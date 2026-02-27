@@ -10,9 +10,11 @@ import SwiftUI
 struct HomeView: View {
     var body: some View {
         VStack(spacing: 24) {
-            View1()
-            View2()
-            View3()
+            AppointmentView()
+        
+            PatientsView()
+        
+            NotesView()
         }
         .padding()
     }
