@@ -15,6 +15,18 @@ struct SanPulseApp: App {
                 Tab("Accueil",systemImage: "house"){
                     HomeView()
                 }
+                
+                Tab("Accueil",systemImage: "house"){
+                    HomeView()
+                }
+                
+                Tab("Accueil",systemImage: "house"){
+                    HomeView()
+                }
+                
+                Tab("Accueil",systemImage: "house"){
+                    HomeView()
+                }
             }
         }
     }
