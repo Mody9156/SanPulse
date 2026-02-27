@@ -20,7 +20,15 @@ struct HomeView: View {
                 .font(.subheadline)
                 .foregroundStyle(.gray)
             
-            CustomRectangle(customColor: .green)
+            HStack {
+                CustomRectangle(customColor: .green)
+                CustomRectangle(customColor: .green)
+            }
+            
+            HStack {
+                CustomRectangle(customColor: .green)
+                CustomRectangle(customColor: .green)
+            }
             
             Spacer()
             
@@ -35,7 +43,7 @@ struct CustomRectangle: View {
     var body: some View {
         RoundedRectangle(cornerRadius: 12)
             .foregroundStyle(customColor)
-            .frame(width: 50,height: 50)
+            .frame(width: 150,height: 150)
     }
 }
 
