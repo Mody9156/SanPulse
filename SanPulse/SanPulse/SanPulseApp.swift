@@ -11,7 +11,12 @@ import SwiftUI
 struct SanPulseApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+           
+            TabView{
+                Tab("Accueil",systemImage: "house"){
+                    ContentView()
+                }
+            }
         }
     }
 }
