@@ -8,10 +8,19 @@
 import SwiftUI
 
 struct HomeView: View {
+     var dateFormatter  = Date().formatted(.dateTime.weekday(.wide).day().month().year())
+    
     var body: some View {
-        VStack(spacing: 24) {
+        VStack(alignment: .leading) {
            Text("Bonjour, Docteur 👋")
+                .fontWeight(.bold)
+            
+            Text( "\(dateFormatter)")
+                .font(.subheadline)
+                .foregroundStyle(.gray)
+            
             Spacer()
+            
         }
         .padding()
     }
