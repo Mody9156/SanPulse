@@ -16,16 +16,16 @@ struct SanPulseApp: App {
                     HomeView()
                 }
                 
-                Tab("Accueil",systemImage: "house"){
-                    HomeView()
+                Tab("RDV",systemImage: "calendar"){
+                    AppointmentView()
                 }
                 
-                Tab("Accueil",systemImage: "house"){
-                    HomeView()
+                Tab("Patients",systemImage: "person.2"){
+                    PatientsView()
                 }
                 
-                Tab("Accueil",systemImage: "house"){
-                    HomeView()
+                Tab("Notes",systemImage: "note.text"){
+                    NotesView()
                 }
             }
         }

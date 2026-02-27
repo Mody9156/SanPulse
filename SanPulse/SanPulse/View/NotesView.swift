@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct View3: View {
+struct NotesView: View {
     var body: some View {
         VStack {
             Image(systemName: "gear")

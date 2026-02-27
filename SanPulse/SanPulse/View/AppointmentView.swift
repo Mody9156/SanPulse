@@ -1,15 +1,15 @@
 import SwiftUI
 
-struct View2: View {
+struct AppointmentView: View {
     var body: some View {
         VStack {
-            Image(systemName: "star.fill")
+            Image(systemName: "house.fill")
                 .font(.largeTitle)
-                .foregroundStyle(.yellow)
-            Text("Favoris")
+                .foregroundStyle(.blue)
+            Text("Accueil")
                 .font(.title2)
                 .bold()
-            Text("Votre liste de favoris apparaît ici.")
+            Text("Bienvenue dans la première vue.")
                 .font(.body)
                 .foregroundStyle(.secondary)
         }

@@ -1,15 +1,15 @@
 import SwiftUI
 
-struct View1: View {
+struct PatientsView: View {
     var body: some View {
         VStack {
-            Image(systemName: "house.fill")
+            Image(systemName: "star.fill")
                 .font(.largeTitle)
-                .foregroundStyle(.blue)
-            Text("Accueil")
+                .foregroundStyle(.yellow)
+            Text("Favoris")
                 .font(.title2)
                 .bold()
-            Text("Bienvenue dans la première vue.")
+            Text("Votre liste de favoris apparaît ici.")
                 .font(.body)
                 .foregroundStyle(.secondary)
         }
