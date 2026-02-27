@@ -22,12 +22,12 @@ struct HomeView: View {
             
             HStack {
                 CustomRectangle(customColor: .green)
-                CustomRectangle(customColor: .green)
+                CustomRectangle(customColor: .blue)
             }
             
             HStack {
-                CustomRectangle(customColor: .green)
-                CustomRectangle(customColor: .green)
+                CustomRectangle(customColor: .orange)
+                CustomRectangle(customColor: .purple)
             }
             
             Spacer()
@@ -39,11 +39,26 @@ struct HomeView: View {
 
 struct CustomRectangle: View {
     var customColor : Color
+    var customSystemName: String
     
     var body: some View {
-        RoundedRectangle(cornerRadius: 12)
-            .foregroundStyle(customColor)
-            .frame(width: 150,height: 150)
+        ZStack {
+            RoundedRectangle(cornerRadius: 12)
+                .foregroundStyle(customColor)
+                .frame(width: 150,height: 150)
+            
+            VStack(alignment: .leading){
+                Image(systemName: customSystemName)
+                    .foregroundStyle(.white)
+                
+                Text("\(2)")
+                    .foregroundStyle(.white)
+                
+                Text("e")
+                    .foregroundStyle(.white)
+            }
+            .padding()
+        }
     }
 }
 
