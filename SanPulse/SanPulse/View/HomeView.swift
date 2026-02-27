@@ -14,10 +14,13 @@ struct HomeView: View {
         VStack(alignment: .leading) {
            Text("Bonjour, Docteur 👋")
                 .fontWeight(.bold)
-            
+                .font(.title)
+
             Text( "\(dateFormatter)")
                 .font(.subheadline)
                 .foregroundStyle(.gray)
+            
+            
             
             Spacer()
             
@@ -25,6 +28,13 @@ struct HomeView: View {
         .padding()
     }
 }
+
+struct CustomRectangle: View {
+    var body: some View {
+        
+    }
+}
+
 
 #Preview {
     HomeView()
