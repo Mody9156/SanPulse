@@ -28,13 +28,13 @@ struct HomeView: View {
                 
                 HStack {
                     CustomRectangle(customColor: .orange, customSystemName: "bell")
-                    CustomRectangle(customColor: .purple, customSystemName: "arrow.up")
+                    CustomRectangle(customColor: .purple, customSystemName: "arrow.up.forward")
                 }
                 
-                Spacer()
                 
             }
             .padding()
+            
         }
     }
 }
@@ -44,10 +44,10 @@ struct CustomRectangle: View {
     var customSystemName: String
     
     var body: some View {
-        ZStack {
+        ZStack(alignment: .leading) {
             RoundedRectangle(cornerRadius: 12)
                 .foregroundStyle(customColor)
-                .frame(width: 150,height: 150)
+                .frame(width: 180,height: 160)
             
             VStack{
                 Image(systemName: customSystemName)
@@ -57,6 +57,7 @@ struct CustomRectangle: View {
                 Text("\(2)")
                     .foregroundStyle(.white)
                     .padding()
+                
                 Text("e")
                     .foregroundStyle(.white)
                     .padding()
