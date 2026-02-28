@@ -27,8 +27,8 @@ struct HomeView: View {
                 }
                 
                 HStack {
-                    CustomRectangle(customColor: .orange, customSystemName: "")
-                    CustomRectangle(customColor: .purple, customSystemName: "")
+                    CustomRectangle(customColor: .orange, customSystemName: "bell")
+                    CustomRectangle(customColor: .purple, customSystemName: "arrow.up")
                 }
                 
                 Spacer()
