@@ -21,6 +21,7 @@ struct AppointmentView: View {
                 }
             }
         }
+        .padding()
     }
 }
 
