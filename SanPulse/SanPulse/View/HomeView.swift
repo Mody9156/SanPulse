@@ -4,10 +4,6 @@
 //
 //  Created by Modibo on 27/02/2026.
 //
-//
-//  HomeView.swift
-//  SanPulse
-//
 
 import SwiftUI
 
@@ -93,10 +89,6 @@ struct HomeView: View {
         }
     }
 }
-
-////////////////////////////////////////////////////////////
-// MARK: - Components
-////////////////////////////////////////////////////////////
 
 struct StatCard: View {
     let stat: StatItem
