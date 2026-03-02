@@ -162,22 +162,23 @@ struct QuickActionButton: View {
     let title: String
     
     var body: some View {
-        Button(action: {}) {
-            VStack(alignment: .leading, spacing: 8) {
-                Image(systemName: icon)
-                    .font(.title3)
-                    .foregroundColor(Color(hex: "#39855E"))
-                
-                Text(title)
-                    .font(.subheadline)
-                    .foregroundColor(.primary)
+        
+            Button(action: {}) {
+                VStack(alignment: .leading, spacing: 8) {
+                    Image(systemName: icon)
+                        .font(.title3)
+                        .foregroundColor(Color(hex: "#39855E"))
+                    
+                    Text(title)
+                        .font(.subheadline)
+                        .foregroundColor(.primary)
+                }
+                .padding()
+                .frame(maxWidth: .infinity, minHeight: 90)
+                .background(Color(.systemBackground))
+                .cornerRadius(14)
+                .shadow(color: .black.opacity(0.05), radius: 5)
             }
-            .padding()
-            .frame(maxWidth: .infinity, minHeight: 90)
-            .background(Color(.systemBackground))
-            .cornerRadius(14)
-            .shadow(color: .black.opacity(0.05), radius: 5)
-        }
     }
 }
 
