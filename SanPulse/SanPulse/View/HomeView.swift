@@ -12,38 +12,6 @@
 import SwiftUI
 
 struct HomeView: View {
-    
-    // MARK: - Mock Data
-    
-    struct StatItem: Identifiable {
-        let id = UUID()
-        let icon: String
-        let label: String
-        let value: String
-        let color: Color
-    }
-    
-    struct Appointment: Identifiable {
-        let id = UUID()
-        let patientName: String
-        let type: String
-        let time: String
-        let duration: Int
-        let status: String
-    }
-    
-    let stats: [StatItem] = [
-        StatItem(icon: "calendar", label: "RDV aujourd'hui", value: "3", color: Color(hex: "#39855E")),
-        StatItem(icon: "person.2", label: "Patients suivis", value: "42", color: .blue),
-        StatItem(icon: "bell", label: "Rappels actifs", value: "5", color: .orange),
-        StatItem(icon: "chart.line.uptrend.xyaxis", label: "Taux de suivi", value: "94%", color: .purple)
-    ]
-    
-    let todayAppointments: [Appointment] = [
-        Appointment(patientName: "Jean Dupont", type: "Consultation", time: "09:00", duration: 30, status: "Confirmé"),
-        Appointment(patientName: "Marie Martin", type: "Suivi", time: "11:00", duration: 45, status: "Planifié")
-    ]
-    
     var formattedDate: String {
         Date().formatted(.dateTime.weekday(.wide).day().month().year())
     }
@@ -53,7 +21,7 @@ struct HomeView: View {
             VStack(alignment: .leading, spacing: 24) {
                 
                 // MARK: - Header
-                
+
                 VStack(alignment: .leading, spacing: 4) {
                     Text("Bonjour, Docteur 👋")
                         .font(.title)
@@ -131,7 +99,7 @@ struct HomeView: View {
 ////////////////////////////////////////////////////////////
 
 struct StatCard: View {
-    let stat: HomeView.StatItem
+    let stat: StatItem
     
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
@@ -156,7 +124,7 @@ struct StatCard: View {
 }
 
 struct AppointmentCard: View {
-    let appointment: HomeView.Appointment
+    let appointment: Appointment
     
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
