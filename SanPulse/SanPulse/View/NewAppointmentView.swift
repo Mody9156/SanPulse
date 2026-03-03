@@ -5,7 +5,7 @@ struct NewAppointmentView: View {
     @State private var type: String = "Consultation"
     @State private var date = Date()
     @State private var duration: Int = 30
-    @State private var note: String = ""
+    @State private var note: String? = nil
     
     let types = ["Consultation", "Suivi", "Urgence", "Autre"]
     
