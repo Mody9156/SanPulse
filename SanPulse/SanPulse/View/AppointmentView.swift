@@ -12,13 +12,18 @@ struct AppointmentView: View {
                     
                     Spacer()
                     
-                    Button(action: {}) {
+                    Button(action: {
+                        
+                    }) {
                         Label("Nouveau", systemImage: "plus")
                             .padding(.horizontal, 14)
                             .padding(.vertical, 8)
                             .background(Color(hex: "#39855E"))
                             .foregroundColor(.white)
                             .clipShape(Capsule())
+                    }
+                    .navigationDestination(isPresented: <#T##Binding<Bool>#>) {
+                        NewAppointmentView()
                     }
                 }
             }

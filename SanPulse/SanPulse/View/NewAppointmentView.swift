@@ -53,7 +53,7 @@ struct NewAppointmentView: View {
                 .foregroundColor(.white)
                 .frame(maxWidth: .infinity)
                 .padding()
-                .background(Color(hex: "#39855E"))
+                .background(Color("#39855E"))
                 .cornerRadius(12)
             }
             .padding(.top, 16)
@@ -62,7 +62,7 @@ struct NewAppointmentView: View {
         .padding()
         .background(Color(.systemBackground))
         .cornerRadius(18)
-        .shadow(color: .black.opacity(0.06), radius: 8)
+        .shadow(color: .black.opacity(0.15), radius: 8)
         .padding()
     }
 }
