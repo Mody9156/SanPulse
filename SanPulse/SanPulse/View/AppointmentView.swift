@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct AppointmentView: View {
+    @State private var activeNavigatio: Bool = false
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 20) {
@@ -13,7 +14,7 @@ struct AppointmentView: View {
                     Spacer()
                     
                     Button(action: {
-                        
+                        activeNavigatio.toggle()
                     }) {
                         Label("Nouveau", systemImage: "plus")
                             .padding(.horizontal, 14)
@@ -22,7 +23,7 @@ struct AppointmentView: View {
                             .foregroundColor(.white)
                             .clipShape(Capsule())
                     }
-                    .navigationDestination(isPresented: <#T##Binding<Bool>#>) {
+                    .navigationDestination(isPresented: $activeNavigatio) {
                         NewAppointmentView()
                     }
                 }
