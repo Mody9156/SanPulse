@@ -21,7 +21,7 @@ struct NewAppointmentView: View {
                     .textFieldStyle(.roundedBorder)
                 
                 Picker("Type", selection: $type) {
-                    ForEach(types, id: \ .self) { Text($0) }
+                    ForEach(types, id: \.self) { Text($0) }
                 }
                 .pickerStyle(.menu)
                 
@@ -35,8 +35,11 @@ struct NewAppointmentView: View {
                     }
                 }
                 
-                TextField("Note (optionnel)", text: $note)
-                    .textFieldStyle(.roundedBorder)
+                TextField("Note (optionnel)", text: Binding(
+                    get: { note ?? "" },
+                    set: { note = $0.isEmpty ? nil : $0 }
+                ))
+                .textFieldStyle(.roundedBorder)
             }
 
             Button(action: {
@@ -67,3 +70,4 @@ struct NewAppointmentView: View {
 #Preview("NewAppointmentView") {
     NewAppointmentView()
 }
+
