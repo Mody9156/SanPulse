@@ -16,6 +16,8 @@ struct Appointment: Identifiable {
 }
 
 let todayAppointments: [Appointment] = [
+    
     Appointment(patientName: "Jean Dupont", type: "Consultation", time: "09:00", duration: 30, status: "Confirmé"),
-    Appointment(patientName: "Marie Martin", type: "Suivi", time: "11:00", duration: 45, status: "Planifié")
+    Appointment(patientName: "Marie Martin", type: "Suivi", time: "11:00", duration: 45, status: "Planifié"),
+    
 ]
