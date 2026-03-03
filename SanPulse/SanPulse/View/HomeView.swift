@@ -177,7 +177,12 @@ struct QuickActionButton: View {
                 .frame(maxWidth: .infinity, minHeight: 90)
                 .background(Color(.systemBackground))
                 .cornerRadius(14)
+                .overlay(content: {
+                    RoundedRectangle(cornerRadius: 12)
+                        .stroke(Color.gray.opacity(0.3),lineWidth: 1)
+                })
                 .shadow(color: .black.opacity(0.05), radius: 5)
+                
             }
     }
 }
