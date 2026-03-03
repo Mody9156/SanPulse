@@ -204,7 +204,6 @@ struct EmptyAppointmentView: View {
     }
 }
 
-
 #Preview {
     HomeView()
 }
