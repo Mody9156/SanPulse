@@ -9,5 +9,5 @@ import Foundation
 import Observation
 
 class CoreDataStack {
-    
+    static  let share = CoreDataStack()
 }
