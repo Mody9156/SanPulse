@@ -13,7 +13,7 @@ import CoreData
 class CoreDataStack {
     static let share = CoreDataStack()
     
-    var PersistentContainer : NSPersistentContainer {
+     var PersistentContainer : NSPersistentContainer = {
         let container = NSPersistentContainer(name: "Model")
         
         container.loadPersistentStores { _ , error in
@@ -25,5 +25,5 @@ class CoreDataStack {
         return container
     }()
     
-    private ini(){}
+    private init(){}
 }
