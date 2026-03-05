@@ -1,20 +1,42 @@
 import SwiftUI
 
 struct AppointmentView: View {
+    @State var activeNavigatio: Bool = false
     var body: some View {
-        VStack {
-            Image(systemName: "house.fill")
-                .font(.largeTitle)
-                .foregroundStyle(.blue)
-            Text("Accueil")
-                .font(.title2)
-                .bold()
-            Text("Bienvenue dans la première vue.")
-                .font(.body)
-                .foregroundStyle(.secondary)
+        NavigationStack {
+            ScrollView {
+                VStack(alignment: .leading, spacing: 20) {
+                    // HEADER
+                    HStack {
+                        Text("Rendez-vous")
+                            .font(.title)
+                            .bold()
+                        
+                        Spacer()
+                        
+                        Button(action: {
+                            activeNavigatio.toggle()
+                        }) {
+                            Label("Nouveau", systemImage: "plus")
+                                .padding(.horizontal, 14)
+                                .padding(.vertical, 8)
+                                .background(Color(hex: "#39855E"))
+                                .foregroundColor(.white)
+                                .clipShape(Capsule())
+                        }
+                        .navigationDestination(isPresented: $activeNavigatio) {
+                            NewAppointmentView()
+                        }
+                        
+                        
+                    }
+                }
+                .padding()
+            }
         }
-        .padding()
-        .background(.ultraThinMaterial)
-        .clipShape(RoundedRectangle(cornerRadius: 16))
     }
+}
+
+#Preview {
+    AppointmentView()
 }
