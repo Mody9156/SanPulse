@@ -7,7 +7,23 @@
 
 import Foundation
 import Observation
+import CoreData
 
+@Observable
 class CoreDataStack {
-    static  let share = CoreDataStack()
+    static let share = CoreDataStack()
+    
+    var PersistentContainer : NSPersistentContainer {
+        let container = NSPersistentContainer(name: "Model")
+        
+        container.loadPersistentStores { _ , error in
+            if let error {
+                fatalError("Failed to load persistent stores: \(error.localizedDescription)")
+            }
+        }
+        
+        return container
+    }()
+    
+    private ini(){}
 }
