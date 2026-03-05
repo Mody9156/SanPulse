@@ -133,11 +133,11 @@ struct AppointmentCard: View {
                 
                 Spacer()
                 
-                Text(appointment.status)
-                    .font(.caption)
-                    .padding(6)
-                    .background(Color.gray.opacity(0.15))
-                    .clipShape(Capsule())
+//                Text(appointment.status)
+//                    .font(.caption)
+//                    .padding(6)
+//                    .background(Color.gray.opacity(0.15))
+//                    .clipShape(Capsule())
             }
             
             HStack(spacing: 16) {
