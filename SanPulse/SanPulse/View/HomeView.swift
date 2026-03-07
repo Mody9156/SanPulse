@@ -116,28 +116,28 @@ struct StatCard: View {
 }
 
 struct AppointmentCard: View {
-    let appointment: Appointment
+    let appointment: SampleAppointment
     
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
             
             HStack {
-                VStack(alignment: .leading) {
-                    Text(appointment.patientName)
-                        .fontWeight(.semibold)
-                    
-                    Text(appointment.type)
-                        .font(.subheadline)
-                        .foregroundStyle(.gray)
-                }
+                //                VStack(alignment: .leading) {
+                //                    Text(appointment.patientName)
+                //                        .fontWeight(.semibold)
+                //
+                //                    Text(appointment.type)
+                //                        .font(.subheadline)
+                //                        .foregroundStyle(.gray)
+                //                }
                 
                 Spacer()
                 
-//                Text(appointment.status)
-//                    .font(.caption)
-//                    .padding(6)
-//                    .background(Color.gray.opacity(0.15))
-//                    .clipShape(Capsule())
+                //                Text(appointment.status)
+                //                    .font(.caption)
+                //                    .padding(6)
+                //                    .background(Color.gray.opacity(0.15))
+                //                    .clipShape(Capsule())
             }
             
             HStack(spacing: 16) {

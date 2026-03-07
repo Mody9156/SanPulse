@@ -6,7 +6,8 @@
 //
 
 import Foundation
-struct Appointment: Identifiable {
+// Used only for previews and sample data. Does NOT represent real Core Data appointments.
+struct SampleAppointment: Identifiable {
     let id = UUID()
     let patientName: String
     let type: String
@@ -15,9 +16,9 @@ struct Appointment: Identifiable {
 //    let status: String
 }
 
-let todayAppointments: [Appointment] = [
+let todayAppointments: [SampleAppointment] = [
     
-    Appointment(patientName: "Jean Dupont", type: "Consultation", time: "09:00", duration: 30),
-    Appointment(patientName: "Marie Martin", type: "Suivi", time: "11:00", duration: 45),
+    SampleAppointment(patientName: "Jean Dupont", type: "Consultation", time: "09:00", duration: 30),
+    SampleAppointment(patientName: "Marie Martin", type: "Suivi", time: "11:00", duration: 45),
     
 ]
