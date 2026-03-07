@@ -42,19 +42,20 @@ class FetchAppointment {
     }
 
     // MARK: - Fetch
-    func fetchAppointments(predicate: NSPredicate? = nil,
-                           sortDescriptors: [NSSortDescriptor] = [NSSortDescriptor(keyPath: \Appointment.time, ascending: true)],
-                           fetchLimit: Int = 0) throws -> [Appointment] {
+    func fetchAppointments() throws -> [Appointment] {
+
+//        var predicate: NSPredicate? = nil
         let request: NSFetchRequest<Appointment> = Appointment.fetchRequest()
-        request.predicate = predicate
-        request.sortDescriptors = sortDescriptors
-        if fetchLimit > 0 { request.fetchLimit = fetchLimit }
+//        request.predicate = predicate
+        request.sortDescriptors = [NSSortDescriptor(keyPath: \Appointment.time, ascending: true)]
+        request.fetchLimit = 0
         var results: [Appointment] = []
         try context.performAndWait {
             results = try context.fetch(request)
         }
         return results
     }
+//    func fetchAppointments(predicate: NSPredicate?, sortDescriptors: [NSSortDescriptor], fetchLimit: Int) throws -> [Appointment]
 
     // MARK: - Delete
     func delete(_ appointment: Appointment) throws {

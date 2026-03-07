@@ -9,6 +9,6 @@ import Foundation
 import Observation
 
 @Observable
-class FetchAppointment {
+class FetchAppointmentViewModel {
     
 }
