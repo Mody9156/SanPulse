@@ -11,7 +11,7 @@ import Observation
 import SwiftUI
 
 @Observable
-class FetchAppointment {
+class FetchAppointment: AppointmentProtocol {
     var context: NSManagedObjectContext
 
     init(
@@ -25,7 +25,8 @@ class FetchAppointment {
     func addAppointment(duration: Int,
                         patientName: String,
                         time: Date,
-                        type: String
+                        type: String,
+                        status : String
     ) throws -> Appointment {
         var created: Appointment!
         try context.performAndWait {
@@ -34,6 +35,7 @@ class FetchAppointment {
             appointment.type = type
             appointment.time = time
             appointment.duration = Int64(duration)
+            appointment.status = status
 
             try context.save()
             created = appointment

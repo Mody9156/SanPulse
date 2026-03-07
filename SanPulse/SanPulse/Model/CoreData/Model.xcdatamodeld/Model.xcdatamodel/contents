@@ -3,6 +3,7 @@
     <entity name="Appointment" representedClassName="Appointment" syncable="YES" codeGenerationType="class">
         <attribute name="duration" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="patientName" attributeType="String"/>
+        <attribute name="status" optional="YES" attributeType="String"/>
         <attribute name="time" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="type" attributeType="String"/>
     </entity>
