@@ -6,3 +6,13 @@
 //
 
 import Foundation
+import Observation
+
+@Observable
+class AppointmentViewModel {
+    var fetchAppointment = FetchAppointment()
+    
+    init() {}
+    
+    
+}
