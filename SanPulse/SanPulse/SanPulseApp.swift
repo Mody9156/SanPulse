@@ -6,9 +6,11 @@
 //
 
 import SwiftUI
+import CoreData
 
 @main
 struct SanPulseApp: App {
+    let persistenceController = CoreDataStack.share.PersistentContainer.viewContext
     var body: some Scene {
         WindowGroup {
             TabView{
@@ -28,6 +30,8 @@ struct SanPulseApp: App {
                     NotesView()
                 }
             }
+            .environment(\.managedObjectContext, persistenceController)
         }
     }
 }
+

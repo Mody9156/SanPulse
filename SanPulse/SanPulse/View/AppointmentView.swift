@@ -1,8 +1,14 @@
 import SwiftUI
+import CoreData
 
 struct AppointmentView: View {
     @State var activeNavigatio: Bool = false
     var appointmentViewModel = AppointmentViewModel()
+    @FetchRequest(
+        sortDescriptors: [NSSortDescriptor(keyPath: \Appointment.time, ascending: true)]
+    )
+    private var appointment: FetchedResults<Appointment>
+    
     var body: some View {
         NavigationStack {
             ScrollView {
@@ -30,7 +36,7 @@ struct AppointmentView: View {
                         }
                     }
                     
-                    ForEach(appointmentViewModel.appointments, id: \.self) { appointment in
+                    ForEach(appointment) { appointment in
                         VStack(alignment: .leading, spacing: 6) {
                             Text(appointment.patientName ?? "k")
                                 .font(.headline)

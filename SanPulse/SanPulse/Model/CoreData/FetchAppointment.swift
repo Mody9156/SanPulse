@@ -45,7 +45,7 @@ class FetchAppointment: AppointmentProtocol {
     // MARK: - Fetch
     func fetchAppointments() throws -> [Appointment] {
 
-        var predicate: NSPredicate? = nil
+        let predicate: NSPredicate? = nil
         let request: NSFetchRequest<Appointment> = Appointment.fetchRequest()
         request.predicate = predicate
         request.sortDescriptors = [NSSortDescriptor(keyPath: \Appointment.time, ascending: true)]
