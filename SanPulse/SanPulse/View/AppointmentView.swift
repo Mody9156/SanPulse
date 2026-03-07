@@ -2,6 +2,7 @@ import SwiftUI
 
 struct AppointmentView: View {
     @State var activeNavigatio: Bool = false
+    var appointmentViewModel = AppointmentViewModel()
     var body: some View {
         NavigationStack {
             ScrollView {
@@ -28,11 +29,33 @@ struct AppointmentView: View {
                             AppointmentCreationView()
                         }
                     }
+                    
+                    ForEach(appointmentViewModel.appointments, id: \.self) { appointment in
+                        VStack(alignment: .leading, spacing: 6) {
+                            Text(appointment.patientName ?? "k")
+                                .font(.headline)
+                            HStack {
+                                Text(appointment.type ?? "m" )
+                                    .font(.subheadline)
+                                Spacer()
+                                if let time = appointment.time {
+                                    Text(time.formatted(date: .numeric, time: .shortened))
+                                        .font(.caption)
+                                }
+                            }
+                            Text("Durée: \(appointment.duration) min")
+                                .font(.caption)
+                            if let note = appointment.note, !note.isEmpty {
+                                Text("Note: \(note)")
+                                    .italic()
+                                    .font(.caption2)
+                            }
+                        }
+                        .padding(.vertical, 8)
+                        Divider()
+                    }
                 }
                 .padding()
-            }
-            .onAppear{
-                
             }
         }
     }

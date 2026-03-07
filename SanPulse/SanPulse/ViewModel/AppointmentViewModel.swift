@@ -11,12 +11,12 @@ import Observation
 @Observable
 class AppointmentViewModel {
     var fetchAppointment = FetchAppointment()
-    
+    var appointments: [Appointment] = []
     init() {}
     
     func showAppointment() throws {
         do{
-            try fetchAppointment.fetchAppointments()
+            appointments = try fetchAppointment.fetchAppointments()
         }catch {
             print("bad fetch appointment")
         }

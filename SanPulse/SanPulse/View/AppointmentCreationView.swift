@@ -4,11 +4,17 @@ struct AppointmentCreationView: View {
     @State private var patientName: String = ""
     @State private var type: String = "Consultation"
     @State private var date = Date()
-    @State private var duration: Int = 30
+    @State private var duration: Int = 5
     @State private var note: String? = nil
     var newAppointmentViewModel = NewAppointmentViewModel()
     let types = ["Consultation", "Suivi", "Urgence", "Autre"]
-    
+    @Environment(\.dismiss) var dismiss
+    var isNotEmpty : Bool {
+        if !patientName.isEmpty && !type.isEmpty && duration != 0 {
+           return true
+        }
+        return false
+    }
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
             Text("Nouveau rendez-vous")
@@ -45,14 +51,19 @@ struct AppointmentCreationView: View {
             Button(
                 action: {
                     // Logique d'ajout du rendez-vous à intégrer
-                    try?   newAppointmentViewModel
-                        .newAppoitment(
-                            duration: duration,
-                            patientName: patientName,
-                            time: date,
-                            type: type,
-                            note: note ?? ""
-                        )
+                    
+                    if isNotEmpty {
+                        try?   newAppointmentViewModel
+                            .newAppoitment(
+                                duration: duration,
+                                patientName: patientName,
+                                time: date,
+                                type: type,
+                                note: note ?? ""
+                            )
+                        dismiss()
+                    }
+                   
                 }) {
                     HStack {
                         Image(systemName: "calendar.badge.plus")
