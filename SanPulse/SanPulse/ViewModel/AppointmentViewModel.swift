@@ -14,5 +14,11 @@ class AppointmentViewModel {
     
     init() {}
     
-    
+    func showAppointment() throws {
+        do{
+            try fetchAppointment.fetchAppointments()
+        }catch {
+            print("bad fetch appointment")
+        }
+    }
 }
