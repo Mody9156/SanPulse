@@ -26,7 +26,7 @@ class FetchAppointment: AppointmentProtocol {
                         patientName: String,
                         time: Date,
                         type: String,
-                        status : String
+                        note : String
     ) throws -> Appointment {
         var created: Appointment!
         try context.performAndWait {
@@ -35,8 +35,7 @@ class FetchAppointment: AppointmentProtocol {
             appointment.type = type
             appointment.time = time
             appointment.duration = Int64(duration)
-            appointment.status = status
-
+            appointment.note = note
             try context.save()
             created = appointment
         }

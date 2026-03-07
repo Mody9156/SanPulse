@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct NewAppointmentView: View {
+struct AppointmentCreationView: View {
     @State private var patientName: String = ""
     @State private var type: String = "Consultation"
     @State private var date = Date()
@@ -15,7 +15,7 @@ struct NewAppointmentView: View {
                 .font(.title2)
                 .fontWeight(.bold)
                 .padding(.bottom, 8)
-                
+            
             Group {
                 TextField("Nom du patient", text: $patientName)
                     .textFieldStyle(.roundedBorder)
@@ -41,22 +41,31 @@ struct NewAppointmentView: View {
                 ))
                 .textFieldStyle(.roundedBorder)
             }
-
-            Button(action: {
-                // Logique d'ajout du rendez-vous à intégrer
-            }) {
-                HStack {
-                    Image(systemName: "calendar.badge.plus")
-                    Text("Programmer le RDV")
-                        .fontWeight(.semibold)
+            
+            Button(
+                action: {
+                    // Logique d'ajout du rendez-vous à intégrer
+                    try?   newAppointmentViewModel
+                        .newAppoitment(
+                            duration: duration,
+                            patientName: patientName,
+                            time: date,
+                            type: type,
+                            note: note ?? ""
+                        )
+                }) {
+                    HStack {
+                        Image(systemName: "calendar.badge.plus")
+                        Text("Programmer le RDV")
+                            .fontWeight(.semibold)
+                    }
+                    .foregroundColor(.white)
+                    .frame(maxWidth: .infinity)
+                    .padding()
+                    .background(Color(hex:"#39855E"))
+                    .cornerRadius(12)
                 }
-                .foregroundColor(.white)
-                .frame(maxWidth: .infinity)
-                .padding()
-                .background(Color(hex:"#39855E"))
-                .cornerRadius(12)
-            }
-            .padding(.top, 16)
+                .padding(.top, 16)
             
         }
         .padding()
@@ -67,7 +76,6 @@ struct NewAppointmentView: View {
     }
 }
 
-#Preview("NewAppointmentView") {
-    NewAppointmentView()
+#Preview("AppointmentCreationView") {
+    AppointmentCreationView()
 }
-

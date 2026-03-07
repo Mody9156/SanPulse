@@ -25,7 +25,7 @@ struct AppointmentView: View {
                                 .clipShape(Capsule())
                         }
                         .navigationDestination(isPresented: $activeNavigatio) {
-                            NewAppointmentView()
+                            AppointmentCreationView()
                         }
                         
                         
