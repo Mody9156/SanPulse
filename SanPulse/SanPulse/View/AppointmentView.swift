@@ -27,11 +27,12 @@ struct AppointmentView: View {
                         .navigationDestination(isPresented: $activeNavigatio) {
                             AppointmentCreationView()
                         }
-                        
-                        
                     }
                 }
                 .padding()
+            }
+            .onAppear{
+                
             }
         }
     }
