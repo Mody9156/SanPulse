@@ -27,7 +27,7 @@ struct AppointmentView: View {
                             Label("Nouveau", systemImage: "plus")
                                 .padding(.horizontal, 14)
                                 .padding(.vertical, 8)
-                                .background(Color(hex: "#39855E"))
+                                .background(Color("#39855E"))
                                 .foregroundColor(.white)
                                 .clipShape(Capsule())
                         }
@@ -37,32 +37,68 @@ struct AppointmentView: View {
                     }
                     
                     ForEach(appointment) { appointment in
-                        VStack(alignment: .leading, spacing: 6) {
-                            Text(appointment.patientName ?? "")
-                                .font(.headline)
-                            HStack {
-                                Text(appointment.type ?? "")
-                                    .font(.subheadline)
-                                Spacer()
-                                if let time = appointment.time {
-                                    Text(time, style: .time)
-                                        .font(.caption)
-                                } else {
-                                    Text("")
-                                        .font(.caption)
+                        VStack(alignment: .leading, spacing: 10) {
+                            
+                            HStack(alignment: .top) {
+                                
+                                VStack(alignment: .leading, spacing: 4) {
+                                    
+                                    // Nom du patient
+                                    Text(appointment.patientName ?? "")
+                                        .font(.headline)
+                                    
+                                    // Type de rendez-vous
+                                    Text(appointment.type ?? "")
+                                        .font(.subheadline)
+                                        .foregroundStyle(.secondary)
+                                    
+                                    // Heure + durée
+                                    HStack(spacing: 12) {
+                                        
+                                        if let time = appointment.time {
+                                            Label {
+                                                Text(time, style: .time)
+                                            } icon: {
+                                                Image(systemName: "clock")
+                                            }
+                                            .font(.caption)
+                                            .foregroundStyle(.secondary)
+                                        }
+                                        
+                                        Text("\(appointment.duration) min")
+                                            .font(.caption)
+                                            .foregroundStyle(.secondary)
+                                    }
                                 }
+                                
+                                Spacer()
+                                
+                                // Status badge
+                                Text(appointment.status ?? "")
+                                    .font(.caption)
+                                    .padding(.horizontal, 10)
+                                    .padding(.vertical, 4)
+                                    .background(Color.green.opacity(0.15))
+                                    .foregroundColor(.green)
+                                    .clipShape(Capsule())
                             }
-                            Text("Durée: \(appointment.duration) min")
-                                .font(.caption)
-
+                            
+                            // Notes
                             if let note = appointment.note, !note.isEmpty {
+                                Divider()
+                                
                                 Text(note)
-                                    .italic()
-                                    .font(.caption2)
+                                    .font(.caption)
+                                    .foregroundStyle(.secondary)
                             }
+                            
                         }
-                        .padding(.vertical, 8)
-                        Divider()
+                        .padding()
+                        .background(Color(.systemBackground))
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 12)
+                                .stroke(Color(.systemGray5))
+                        )
                     }
                 }
                 .padding()
