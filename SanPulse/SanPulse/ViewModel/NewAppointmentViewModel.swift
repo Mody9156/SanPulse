@@ -21,7 +21,7 @@ class NewAppointmentViewModel {
                                                 patientName: patientName,
                                                 time: time,
                                                 type: type,
-                                                status: status, note: note)
+                                                note: note, status: status)
         }catch {
             print("error mec")
         }

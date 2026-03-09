@@ -7,7 +7,7 @@ struct AppointmentView: View {
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(keyPath: \Appointment.time, ascending: true)]
     )
-    private var appointment: FetchedResults< Appointment>
+    private var appointment: FetchedResults<Appointment>
     var statusColor: (_ statusName: String) -> Color {
         { statusName in
             switch statusName {
@@ -94,8 +94,8 @@ struct AppointmentView: View {
                                     .font(.caption)
                                     .padding(.horizontal, 10)
                                     .padding(.vertical, 4)
-                                    .background(Color.green.opacity(0.15))
-                                    .foregroundColor(.green)
+                                    .background(statusColor.opacity(0.15))
+                                    .foregroundColor(statusColor)
                                     .clipShape(Capsule())
                             }
                             // Notes

@@ -59,7 +59,8 @@ struct AppointmentCreationView: View {
                                 patientName: patientName,
                                 time: date,
                                 type: type,
-                                note: note ?? ""
+                                note: note ?? "",
+                                status: type
                             )
                         dismiss()
                     }

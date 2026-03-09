@@ -26,8 +26,8 @@ class FetchAppointment: AppointmentProtocol {
                         patientName: String,
                         time: Date,
                         type: String,
-                        status: String,
-                        note : String
+                        note : String,
+                        status: String
     ) throws -> Appointment {
         var created: Appointment!
         try context.performAndWait {
