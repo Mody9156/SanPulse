@@ -2,13 +2,31 @@ import SwiftUI
 import CoreData
 
 struct AppointmentView: View {
-    @State var activeNavigatio: Bool = false
+    @State var activeNavigation: Bool = false
     var appointmentViewModel = AppointmentViewModel()
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(keyPath: \Appointment.time, ascending: true)]
     )
-    private var appointment: FetchedResults<Appointment>
+    private var appointment: FetchedResults< Appointment>
     
+    let todayAppointmentss: [SampleAppointment] = [
+       
+       SampleAppointment(
+           patientName: "Jean Dupont",
+           type: "Consultation",
+           time: "09:00",
+           duration: 30,
+           status: "Confirmer"
+       ),
+       SampleAppointment(
+           patientName: "Marie Martin",
+           type: "Suivi",
+           time: "11:00",
+           duration: 45,
+           status: "Confirmer"
+       )
+       
+    ]
     var body: some View {
         NavigationStack {
             ScrollView {
@@ -22,7 +40,7 @@ struct AppointmentView: View {
                         Spacer()
                         
                         Button(action: {
-                            activeNavigatio.toggle()
+                            activeNavigation.toggle()
                         }) {
                             Label("Nouveau", systemImage: "plus")
                                 .padding(.horizontal, 14)
@@ -31,28 +49,36 @@ struct AppointmentView: View {
                                 .foregroundColor(.white)
                                 .clipShape(Capsule())
                         }
-                        .navigationDestination(isPresented: $activeNavigatio) {
+                        .navigationDestination(isPresented: $activeNavigation) {
                             AppointmentCreationView()
                         }
                     }
                     
                     ForEach(appointment) { appointment in
                         VStack(alignment: .leading, spacing: 6) {
-                            Text(appointment.patientName ?? "k")
+                            Text(appointment.patientName ?? "")
                                 .font(.headline)
                             HStack {
-                                Text(appointment.type ?? "m" )
+                                Text(appointment.type ?? "")
                                     .font(.subheadline)
                                 Spacer()
                                 if let time = appointment.time {
-                                    Text(time.formatted(date: .numeric, time: .shortened))
+                                    Text(time, style: .time)
+                                        .font(.caption)
+                                } else {
+                                    Text("")
                                         .font(.caption)
                                 }
                             }
                             Text("Durée: \(appointment.duration) min")
                                 .font(.caption)
+//                            if let note = appointment.note, !note.isEmpty {
+//                                Text("Note: \(note)")
+//                                    .italic()
+//                                    .font(.caption2)
+//                            }
                             if let note = appointment.note, !note.isEmpty {
-                                Text("Note: \(note)")
+                                Text(note)
                                     .italic()
                                     .font(.caption2)
                             }

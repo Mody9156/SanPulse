@@ -14,23 +14,26 @@ struct SampleAppointment: Identifiable {
     let time: String
     let duration: Int
     let status: String
+    
+     
 }
 
-let todayAppointments: [SampleAppointment] = [
-    
-    SampleAppointment(
-        patientName: "Jean Dupont",
-        type: "Consultation",
-        time: "09:00",
-        duration: 30,
-        status: "Confirmer"
-    ),
-    SampleAppointment(
-        patientName: "Marie Martin",
-        type: "Suivi",
-        time: "11:00",
-        duration: 45,
-        status: "Confirmer"
-    ),
-    
+
+var todayAppointments: [SampleAppointment] = [
+   
+   SampleAppointment(
+       patientName: "Jean Dupont",
+       type: "Consultation",
+       time: "09:00",
+       duration: 30,
+       status: "Confirmer"
+   ),
+   SampleAppointment(
+       patientName: "Marie Martin",
+       type: "Suivi",
+       time: "11:00",
+       duration: 45,
+       status: "Confirmer"
+   )
+   
 ]
