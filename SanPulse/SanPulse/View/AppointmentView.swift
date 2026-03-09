@@ -8,25 +8,7 @@ struct AppointmentView: View {
         sortDescriptors: [NSSortDescriptor(keyPath: \Appointment.time, ascending: true)]
     )
     private var appointment: FetchedResults< Appointment>
-    
-    let todayAppointmentss: [SampleAppointment] = [
-       
-       SampleAppointment(
-           patientName: "Jean Dupont",
-           type: "Consultation",
-           time: "09:00",
-           duration: 30,
-           status: "Confirmer"
-       ),
-       SampleAppointment(
-           patientName: "Marie Martin",
-           type: "Suivi",
-           time: "11:00",
-           duration: 45,
-           status: "Confirmer"
-       )
-       
-    ]
+  
     var body: some View {
         NavigationStack {
             ScrollView {
@@ -72,11 +54,7 @@ struct AppointmentView: View {
                             }
                             Text("Durée: \(appointment.duration) min")
                                 .font(.caption)
-//                            if let note = appointment.note, !note.isEmpty {
-//                                Text("Note: \(note)")
-//                                    .italic()
-//                                    .font(.caption2)
-//                            }
+
                             if let note = appointment.note, !note.isEmpty {
                                 Text(note)
                                     .italic()
