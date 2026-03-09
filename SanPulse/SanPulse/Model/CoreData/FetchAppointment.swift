@@ -26,6 +26,7 @@ class FetchAppointment: AppointmentProtocol {
                         patientName: String,
                         time: Date,
                         type: String,
+                        status: String,
                         note : String
     ) throws -> Appointment {
         var created: Appointment!
@@ -33,9 +34,11 @@ class FetchAppointment: AppointmentProtocol {
             let appointment = Appointment(context: context)
             appointment.patientName = patientName
             appointment.type = type
+            appointment.status = status
             appointment.time = time
             appointment.duration = Int64(duration)
             appointment.note = note
+            
             try context.save()
             created = appointment
         }
@@ -66,3 +69,4 @@ class FetchAppointment: AppointmentProtocol {
         }
     }
 }
+

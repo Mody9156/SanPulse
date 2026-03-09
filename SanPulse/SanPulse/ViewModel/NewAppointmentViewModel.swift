@@ -14,13 +14,14 @@ class NewAppointmentViewModel {
     
     init() {}
     
-    func newAppoitment(duration: Int,patientName: String,time: Date,type: String, note: String) throws {
+    func newAppoitment(duration: Int,patientName: String,time: Date,type: String, note: String,status:String) throws {
         
         do {
             try fetchAppointment.addAppointment(duration: duration,
                                                 patientName: patientName,
                                                 time: time,
-                                                type: type, note: note)
+                                                type: type,
+                                                status: status, note: note)
         }catch {
             print("error mec")
         }

@@ -8,7 +8,25 @@ struct AppointmentView: View {
         sortDescriptors: [NSSortDescriptor(keyPath: \Appointment.time, ascending: true)]
     )
     private var appointment: FetchedResults< Appointment>
-  
+    var statusColor: (_ statusName: String) -> Color {
+        { statusName in
+            switch statusName {
+            case "Confirmé":
+                return .green
+            case "Planifié":
+                return .blue
+            case "Annulé":
+                return .red
+            case "Absent":
+                return .orange
+            case "Terminé":
+                return .gray
+            default:
+                return .gray
+            }
+        }
+    }
+    
     var body: some View {
         NavigationStack {
             ScrollView {
@@ -27,7 +45,7 @@ struct AppointmentView: View {
                             Label("Nouveau", systemImage: "plus")
                                 .padding(.horizontal, 14)
                                 .padding(.vertical, 8)
-                                .background(Color("#39855E"))
+                                .background(Color( "#39855E"))
                                 .foregroundColor(.white)
                                 .clipShape(Capsule())
                         }
@@ -38,9 +56,7 @@ struct AppointmentView: View {
                     
                     ForEach(appointment) { appointment in
                         VStack(alignment: .leading, spacing: 10) {
-                            
                             HStack(alignment: .top) {
-                                
                                 VStack(alignment: .leading, spacing: 4) {
                                     
                                     // Nom du patient
@@ -82,7 +98,6 @@ struct AppointmentView: View {
                                     .foregroundColor(.green)
                                     .clipShape(Capsule())
                             }
-                            
                             // Notes
                             if let note = appointment.note, !note.isEmpty {
                                 Divider()
@@ -91,14 +106,7 @@ struct AppointmentView: View {
                                     .font(.caption)
                                     .foregroundStyle(.secondary)
                             }
-                            
                         }
-                        .padding()
-                        .background(Color(.systemBackground))
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 12)
-                                .stroke(Color(.systemGray5))
-                        )
                     }
                 }
                 .padding()
