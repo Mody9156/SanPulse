@@ -3,6 +3,7 @@ import CoreData
 
 struct AppointmentView: View {
     @State var activeNavigation: Bool = false
+    @State var searchable : String = ""
     var appointmentViewModel = AppointmentViewModel()
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(keyPath: \Appointment.time, ascending: true)]
@@ -109,6 +110,7 @@ struct AppointmentView: View {
                         }
                     }
                 }
+                
                 .padding()
             }
         }
