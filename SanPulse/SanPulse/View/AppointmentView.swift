@@ -110,7 +110,7 @@ struct AppointmentView: View {
                         }
                     }
                 }
-                
+                .searchable(text: $searchable)
                 .padding()
             }
         }
