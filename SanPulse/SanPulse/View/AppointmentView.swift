@@ -45,7 +45,7 @@ struct AppointmentView: View {
                             Label("Nouveau", systemImage: "plus")
                                 .padding(.horizontal, 14)
                                 .padding(.vertical, 8)
-                                .background(Color( "#39855E"))
+                                .background(Color("GreenBackground"))
                                 .foregroundColor(.white)
                                 .clipShape(Capsule())
                         }
@@ -54,7 +54,7 @@ struct AppointmentView: View {
                         }
                     }
                     
-                    ForEach(appointment) { appointment in
+                    ForEach(appointment, id: \.objectID) { appointment in
                         VStack(alignment: .leading, spacing: 10) {
                             HStack(alignment: .top) {
                                 VStack(alignment: .leading, spacing: 4) {
@@ -94,8 +94,8 @@ struct AppointmentView: View {
                                     .font(.caption)
                                     .padding(.horizontal, 10)
                                     .padding(.vertical, 4)
-                                    .background(statusColor.opacity(0.15))
-                                    .foregroundColor(statusColor)
+                                    .background(statusColor(appointment.status ?? "").opacity(0.15))
+                                    .foregroundColor(statusColor(appointment.status ?? ""))
                                     .clipShape(Capsule())
                             }
                             // Notes
