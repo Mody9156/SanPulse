@@ -1,6 +1,8 @@
 import SwiftUI
 import CoreData
 
+
+
 struct AppointmentView: View {
     
     @State private var activeNavigation = false
@@ -130,7 +132,7 @@ struct AppointmentView: View {
                                             
                                             Text(appointment.type ?? "")
                                                 .font(.subheadline)
-                                                .foregroundStyle(.secondary)
+                                                .foregroundStyle(AppointmentTypeStyle(type: appointment.type).color)
                                             
                                             HStack(spacing: 12) {
                                                 
@@ -174,6 +176,12 @@ struct AppointmentView: View {
                                 .background(.background)
                                 .clipShape(RoundedRectangle(cornerRadius: 12))
                                 .shadow(color: .black.opacity(0.05), radius: 4)
+                                
+                                if let last = groupedAppointments[date]?.last, appointment != last {
+                                    Divider()
+                                        .frame(height: 1)
+                                        .background(Color.gray.opacity(0.2))
+                                }
                             }
                         }
                     }
