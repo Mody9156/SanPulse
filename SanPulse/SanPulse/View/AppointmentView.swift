@@ -1,8 +1,6 @@
 import SwiftUI
 import CoreData
 
-
-
 struct AppointmentView: View {
     
     @State private var activeNavigation = false

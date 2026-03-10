@@ -74,7 +74,7 @@ struct AppointmentCreationView: View {
                     .foregroundColor(.white)
                     .frame(maxWidth: .infinity)
                     .padding()
-                    .background(Color("#39855E"))
+                    .background(Color("GreenBackground"))
                     .cornerRadius(12)
                 }
                 .padding(.top, 16)
