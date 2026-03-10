@@ -2,51 +2,90 @@ import SwiftUI
 import CoreData
 
 struct AppointmentView: View {
-    @State var activeNavigation: Bool = false
-    @State var searchable : String = ""
-    var appointmentViewModel = AppointmentViewModel()
+    
+    @State private var activeNavigation = false
+    @State private var searchable = ""
+    
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(keyPath: \Appointment.time, ascending: true)]
     )
-    private var appointment: FetchedResults<Appointment>
-    var statusColor: (_ statusName: String) -> Color {
-        { statusName in
-            switch statusName {
-            case "Confirmé":
-                return .green
-            case "Planifié":
-                return .blue
-            case "Annulé":
-                return .red
-            case "Absent":
-                return .orange
-            case "Terminé":
-                return .gray
-            default:
-                return .gray
-            }
+    private var appointments: FetchedResults<Appointment>
+    
+    // MARK: Status Color
+    func statusColor(_ status: String) -> Color {
+        switch status {
+        case "Confirmé": return .green
+        case "Planifié": return .blue
+        case "Annulé": return .red
+        case "Absent": return .orange
+        case "Terminé": return .gray
+        default: return .gray
         }
     }
     
+    // MARK: Filter Search
+    var filteredAppointments: [Appointment] {
+        if searchable.isEmpty {
+            return Array(appointments)
+        }
+        
+        return appointments.filter {
+            ($0.patientName ?? "").localizedCaseInsensitiveContains(searchable) ||
+            ($0.type ?? "").localizedCaseInsensitiveContains(searchable)
+        }
+    }
+    
+    // MARK: Group by date
+    var groupedAppointments: [Date: [Appointment]] {
+        Dictionary(grouping: filteredAppointments) { appointment in
+            Calendar.current.startOfDay(for: appointment.time ?? Date())
+        }
+    }
+    
+    var sortedDates: [Date] {
+        groupedAppointments.keys.sorted()
+    }
+    
+    // MARK: Date format
+    func formatDate(_ date: Date) -> String {
+        let calendar = Calendar.current
+        
+        if calendar.isDateInToday(date) {
+            return "Aujourd'hui"
+        } else if calendar.isDateInTomorrow(date) {
+            return "Demain"
+        }
+        
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "fr_FR")
+        formatter.dateStyle = .full
+        
+        return formatter.string(from: date)
+    }
+    
     var body: some View {
+        
         NavigationStack {
+            
             ScrollView {
-                VStack(alignment: .leading, spacing: 20) {
+                
+                VStack(alignment: .leading, spacing: 24) {
+                    
                     // HEADER
                     HStack {
                         Text("Rendez-vous")
-                            .font(.title)
+                            .font(.largeTitle)
                             .bold()
                         
                         Spacer()
                         
-                        Button(action: {
+                        Button {
                             activeNavigation.toggle()
-                        }) {
+                        } label: {
                             Label("Nouveau", systemImage: "plus")
                                 .padding(.horizontal, 14)
                                 .padding(.vertical, 8)
-                                .background(Color("GreenBackground"))
+                                .background(Color.green)
                                 .foregroundColor(.white)
                                 .clipShape(Capsule())
                         }
@@ -55,64 +94,93 @@ struct AppointmentView: View {
                         }
                     }
                     
-                    ForEach(appointment, id: \.objectID) { appointment in
-                        VStack(alignment: .leading, spacing: 10) {
-                            HStack(alignment: .top) {
-                                VStack(alignment: .leading, spacing: 4) {
+                    // LISTE
+                    ForEach(sortedDates, id: \.self) { date in
+                        
+                        VStack(alignment: .leading, spacing: 12) {
+                            
+                            // Section Header
+                            HStack {
+                                Image(systemName: "calendar")
+                                    .foregroundStyle(.green)
+                                
+                                Text(formatDate(date))
+                                    .font(.headline)
+                                
+                                Spacer()
+                                
+                                Text("\(groupedAppointments[date]?.count ?? 0)")
+                                    .font(.caption)
+                                    .padding(6)
+                                    .background(.gray.opacity(0.2))
+                                    .clipShape(Circle())
+                            }
+                            
+                            // Appointments
+                            ForEach(groupedAppointments[date] ?? [], id: \.objectID) { appointment in
+                                
+                                VStack(alignment: .leading, spacing: 10) {
                                     
-                                    // Nom du patient
-                                    Text(appointment.patientName ?? "")
-                                        .font(.headline)
-                                    
-                                    // Type de rendez-vous
-                                    Text(appointment.type ?? "")
-                                        .font(.subheadline)
-                                        .foregroundStyle(.secondary)
-                                    
-                                    // Heure + durée
-                                    HStack(spacing: 12) {
+                                    HStack(alignment: .top) {
                                         
-                                        if let time = appointment.time {
-                                            Label {
-                                                Text(time, style: .time)
-                                            } icon: {
-                                                Image(systemName: "clock")
+                                        VStack(alignment: .leading, spacing: 6) {
+                                            
+                                            Text(appointment.patientName ?? "")
+                                                .font(.headline)
+                                            
+                                            Text(appointment.type ?? "")
+                                                .font(.subheadline)
+                                                .foregroundStyle(.secondary)
+                                            
+                                            HStack(spacing: 12) {
+                                                
+                                                if let time = appointment.time {
+                                                    Label {
+                                                        Text(time, style: .time)
+                                                    } icon: {
+                                                        Image(systemName: "clock")
+                                                    }
+                                                    .font(.caption)
+                                                    .foregroundStyle(.secondary)
+                                                }
+                                                
+                                                Text("\(appointment.duration) min")
+                                                    .font(.caption)
+                                                    .foregroundStyle(.secondary)
                                             }
-                                            .font(.caption)
-                                            .foregroundStyle(.secondary)
                                         }
                                         
-                                        Text("\(appointment.duration) min")
+                                        Spacer()
+                                        
+                                        // STATUS
+                                        Text(appointment.status ?? "")
+                                            .font(.caption)
+                                            .padding(.horizontal, 10)
+                                            .padding(.vertical, 4)
+                                            .background(statusColor(appointment.status ?? "").opacity(0.15))
+                                            .foregroundColor(statusColor(appointment.status ?? ""))
+                                            .clipShape(Capsule())
+                                    }
+                                    
+                                    if let note = appointment.note, !note.isEmpty {
+                                        Divider()
+                                        
+                                        Text(note)
                                             .font(.caption)
                                             .foregroundStyle(.secondary)
                                     }
                                 }
-                                
-                                Spacer()
-                                
-                                // Status badge
-                                Text(appointment.status ?? "")
-                                    .font(.caption)
-                                    .padding(.horizontal, 10)
-                                    .padding(.vertical, 4)
-                                    .background(statusColor(appointment.status ?? "").opacity(0.15))
-                                    .foregroundColor(statusColor(appointment.status ?? ""))
-                                    .clipShape(Capsule())
-                            }
-                            // Notes
-                            if let note = appointment.note, !note.isEmpty {
-                                Divider()
-                                
-                                Text(note)
-                                    .font(.caption)
-                                    .foregroundStyle(.secondary)
+                                .padding()
+                                .background(.background)
+                                .clipShape(RoundedRectangle(cornerRadius: 12))
+                                .shadow(color: .black.opacity(0.05), radius: 4)
                             }
                         }
                     }
                 }
-                .searchable(text: $searchable)
                 .padding()
             }
+            .searchable(text: $searchable, prompt: "Rechercher un patient ou un type")
         }
     }
 }
