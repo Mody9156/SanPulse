@@ -13,12 +13,13 @@ import CoreData
 class CoreDataStack {
     static let share = CoreDataStack()
     
+    /// Description
      var PersistentContainer : NSPersistentContainer = {
         let container = NSPersistentContainer(name: "Model")
         
         container.loadPersistentStores { _ , error in
             if let error {
-                fatalError("Failed to load persistent stores: \(error.localizedDescription)")
+                print("Failed to load persistent stores: \(error.localizedDescription)")
             }
         }
         
