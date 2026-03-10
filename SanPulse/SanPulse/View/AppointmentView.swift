@@ -85,7 +85,7 @@ struct AppointmentView: View {
                             Label("Nouveau", systemImage: "plus")
                                 .padding(.horizontal, 14)
                                 .padding(.vertical, 8)
-                                .background(Color.green)
+                                .background(Color("GreenBackground"))
                                 .foregroundColor(.white)
                                 .clipShape(Capsule())
                         }
