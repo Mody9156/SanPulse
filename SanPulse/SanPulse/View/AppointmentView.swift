@@ -187,6 +187,7 @@ struct AppointmentView: View {
                                 }
 
                             }
+                            
                         }
                     }
                 }
