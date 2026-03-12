@@ -157,7 +157,12 @@ struct AppointmentView: View {
                                             .font(.caption)
                                             .padding(.horizontal, 10)
                                             .padding(.vertical, 4)
-                                            .background(statusColor(appointment.status ?? "").opacity(0.15))
+                                            .background(
+                                                AppointmentTypeStyle(
+                                                    type: appointment.type
+                                                ).color
+                                                    .opacity(0.6)
+                                            )
                                             .foregroundColor(statusColor(appointment.status ?? ""))
                                             .clipShape(Capsule())
                                     }
@@ -180,6 +185,7 @@ struct AppointmentView: View {
                                         .frame(height: 1)
                                         .background(Color.gray.opacity(0.2))
                                 }
+
                             }
                         }
                     }
