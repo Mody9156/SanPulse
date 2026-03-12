@@ -189,7 +189,9 @@ struct AppointmentView: View {
                             }
                         }
                     }
-                    .onDelete(perform: <#T##Optional<(IndexSet) -> Void>#>)
+                    .onDelete(
+                        perform: appointmentViewModel.deleteAppointement
+                    )
                 }
                 .padding()
             }
