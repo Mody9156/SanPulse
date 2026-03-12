@@ -187,7 +187,7 @@ struct AppointmentView: View {
                                 }
 
                             }
-                            
+                            .onDelete(perform: <#T##Optional<(IndexSet) -> Void>#>)
                         }
                     }
                 }

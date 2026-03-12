@@ -21,4 +21,12 @@ class AppointmentViewModel {
             print("bad fetch appointment")
         }
     }
+    
+    func deleteAppointement(appointments: Appointment) {
+        do{
+            try fetchAppointment.delete(appointments)
+        }catch {
+            print("bad fetch appointment")
+        }
+    }
 }
