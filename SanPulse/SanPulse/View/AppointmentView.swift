@@ -130,7 +130,7 @@ struct AppointmentView: View {
                                             
                                             Text(appointment.type ?? "")
                                                 .font(.subheadline)
-                                                .foregroundStyle(AppointmentTypeStyle(type: appointment.type).color)
+                                                .foregroundStyle(.secondary)
                                             
                                             HStack(spacing: 12) {
                                                 
@@ -161,9 +161,9 @@ struct AppointmentView: View {
                                                 AppointmentTypeStyle(
                                                     type: appointment.type
                                                 ).color
-                                                    .opacity(0.6)
+                                                    .opacity(0.4)
                                             )
-                                            .foregroundColor(statusColor(appointment.status ?? ""))
+                                            .foregroundColor(AppointmentTypeStyle(type: appointment.type).color)
                                             .clipShape(Capsule())
                                     }
                                     
