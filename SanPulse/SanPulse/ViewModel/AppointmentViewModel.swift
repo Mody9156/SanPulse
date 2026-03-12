@@ -22,9 +22,9 @@ class AppointmentViewModel {
         }
     }
     
-    func deleteAppointement(appointments: Appointment) {
+    func deleteAppointement(_ offsets: IndexSet) {
         do{
-            try fetchAppointment.delete(appointments)
+            try fetchAppointment.delete(offsets)
         }catch {
             print("bad fetch appointment")
         }

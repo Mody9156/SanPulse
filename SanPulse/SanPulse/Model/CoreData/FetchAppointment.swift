@@ -13,7 +13,7 @@ import SwiftUI
 @Observable
 class FetchAppointment: AppointmentProtocol {
     var context: NSManagedObjectContext
-
+    var appointment: FetchedResults<Appointment>
     init(
         context: NSManagedObjectContext = CoreDataStack.share.PersistentContainer.viewContext
     ) {
@@ -62,11 +62,15 @@ class FetchAppointment: AppointmentProtocol {
 //    func fetchAppointments(predicate: NSPredicate?, sortDescriptors: [NSSortDescriptor], fetchLimit: Int) throws -> [Appointment]
 
     // MARK: - Delete
-    func delete(_ appointment: Appointment) throws {
-        try context.performAndWait {
-            context.delete(appointment)
-            try context.save()
+    func delete(_ offsets: IndexSet) throws {
+        for index  in offsets {
+            let appointments = appointment[index]
+            try context.performAndWait {
+                context.delete(appointments)
+                try context.save()
+            }
         }
+       
     }
 }
 

@@ -5,7 +5,7 @@ struct AppointmentView: View {
     
     @State private var activeNavigation = false
     @State private var searchable = ""
-    
+    var appointmentViewModel = AppointmentViewModel()
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(keyPath: \Appointment.time, ascending: true)]
     )
@@ -187,9 +187,9 @@ struct AppointmentView: View {
                                 }
 
                             }
-                            .onDelete(perform: <#T##Optional<(IndexSet) -> Void>#>)
                         }
                     }
+                    .onDelete(perform: <#T##Optional<(IndexSet) -> Void>#>)
                 }
                 .padding()
             }
